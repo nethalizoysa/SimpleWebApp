@@ -18,19 +18,17 @@ node {
     stage('TestingImage') {
         /* Ideally, The test framework should run against the image.
          * Just simulate it here */
-        dockerImage.inside {
-            sh 'ls'
-        }
+        sh 'echo Testing of image'
     }
 
-    /* stage('PushingImage') {
+    stage('PushingImage') {
         /* Finally, Image is pushed with two tags
-         * First, the incremental build number from Jenkins
-         * Second, the 'latest' tag
-         * Pushing multiple tags is cheap, as all the layers are reused 
+         * First, the incremental build number from Jenkins. This create new Tag for image
+         * Second, the 'latest' tag. This was already created
+         * Pushing multiple tags is cheap, as all the layers are reused */
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
             dockerImage.push("${env.BUILD_NUMBER}")
             dockerImage.push("latest")
         }
-    }*/
+    }
 }
