@@ -10,7 +10,8 @@ node {
     stage('BuildingImage') {
         /* This builds the actual image.
          * Synonymous to docker build on the command line:
-         * docker image build -t nethali/hellonode:${BUILD_NUMBER} . */
+         * docker build -t nethali/hellonode .
+         * Default tag latest will be used. */
         app = docker.build("nethali/hellonode")
     }
 
