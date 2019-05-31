@@ -18,7 +18,7 @@ node {
     stage('TestingImage') {
         /* Ideally, The test framework should run against the image.
          * Just simulate it here */
-        app.inside {
+        dockerImage.inside {
             sh 'echo "Testing"'
         }
     }
@@ -29,8 +29,8 @@ node {
          * Second, the 'latest' tag
          * Pushing multiple tags is cheap, as all the layers are reused 
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
+            dockerImage.push("${env.BUILD_NUMBER}")
+            dockerImage.push("latest")
         }
     }*/
 }
