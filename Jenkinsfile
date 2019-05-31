@@ -19,7 +19,7 @@ node {
         /* Ideally, The test framework should run against the image.
          * Just simulate it here */
         dockerImage.inside {
-            sh 'echo "Testing"'
+            sh 'ls'
         }
     }
 
