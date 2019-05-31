@@ -1,5 +1,5 @@
 node {
-    def app
+    def dockerImage
 
     stage('Cloning') {
 
@@ -12,16 +12,16 @@ node {
          * Synonymous to docker build on the command line:
          * docker build -t nethali/hellonode .
          * Default tag latest will be used. */
-        app = docker.build("nethali/hellonode")
+        dockerImage = docker.build("nethali/hellonode")
     }
 
-    /* stage('TestingImage') {
+    stage('TestingImage') {
         /* Ideally, The test framework should run against the image.
-         * Just simulate it here
+         * Just simulate it here */
         app.inside {
             sh 'echo "Testing"'
         }
-    }*/
+    }
 
     /* stage('PushingImage') {
         /* Finally, Image is pushed with two tags
