@@ -12,7 +12,7 @@ node {
          * docker build -t nethali/simplewebapp .
          * Default tag latest will be used.
          * New image created: nethali/simplewebapp:latest */
-        dockerImage = docker.build("nethali/simplewebapp", "--network host")
+        dockerImage = docker.build("nethali/simplewebapp", ". --network host")
     }
 
     stage('TestingImage') {
