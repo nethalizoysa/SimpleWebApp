@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: webapp-dev-1
+    tier: frontend
+  name: deploy-webapp-dev-1
+spec:
+  minReadySeconds: 10
+  replicas: 5
+  selector:
+    matchLabels:
+      app: pod-webapp-dev-1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: pod-webapp-dev-1
+        version: 2.0.0
+        zone: prod
+    spec:
+      containers:
+        - image: 'nethali/simplewebapp:latest'
+          imagePullPolicy: Always
+          name: ctr-webapp-dev
+          ports:
+            - containerPort: 8080
+
